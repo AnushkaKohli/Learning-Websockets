@@ -8,7 +8,6 @@ const statusDiv = document.getElementById('current-status');
 document.getElementById('send-message').addEventListener('click', () => {
     const text = document.getElementById('message-input').value;
     socket.emit('talk-to-server', text);
-    // statusDiv.innerText = "JUST SENT A MESSAGE";
 })
 
 socket.on('talk-to-client', (message) => {
