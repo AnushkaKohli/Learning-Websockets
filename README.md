@@ -57,3 +57,30 @@ document.getElementById('send-message').addEventListener('click', async () => {
     await socket.emitWithAck('talk-to-server', text);
 })
 ```
+
+### Rooms
+
+A *room* is an arbitrary channel that sockets can join and leave. It can be used to broadcast events to a subset of clients.
+
+1. You can call ```join``` to subscribe the socket to a given channel:
+
+```
+io.on("connection", (socket) => {
+  socket.join("some room");
+});
+```
+2. You can then use ```to``` or ```in``` (they are the same) when broadcasting or emitting:
+
+```io.to("some room").emit("some event");```
+
+3. Or exclude a room:
+
+```io.except("some room").emit("some event");```
+
+4. You can also emit to several rooms at the same time:
+
+```io.to("room1").to("room2").to("room3").emit("some event");```
+
+5. You can leave a room:
+
+```socket.leave(roomName);```
