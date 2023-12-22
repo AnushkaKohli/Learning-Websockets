@@ -25,12 +25,9 @@ function App() {
         }
       }
     }
-    const socket = io('https://slack-app-server.vercel.app/', {
+    const socket = io('ws://localhost:3001', {
       transports: ['websocket']
     });
-    // const socket = io('ws://localhost:3001', {
-    //   transports: ['websocket']
-    // });
 
     setMySocket(socket);
 
