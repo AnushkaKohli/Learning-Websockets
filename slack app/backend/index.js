@@ -12,7 +12,7 @@ app.listen(3000, () => {
 
 //WEBSOCKET BLOCK
 const { Server } = require('socket.io');
-const { createServer } = require('node:http');
+const { createServer } = require('http');
 const appWebSocket = express();
 const server = createServer(appWebSocket);
 server.listen(3001, () => {
@@ -21,7 +21,7 @@ server.listen(3001, () => {
 const io = new Server(server, {
     transports: ['websocket'],
     cors: {
-        origin: '*',
+        origin: 'https://slack-app-client.vercel.app/',
         methods: ['GET', 'POST']
     }
 });
