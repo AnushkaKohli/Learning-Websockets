@@ -25,12 +25,12 @@ function App() {
         }
       }
     }
-    // const socket = io('https://slack-app-server.vercel.app/', {
-    //   transports: ['websocket']
-    // });
-    const socket = io('ws://localhost:3001', {
+    const socket = io('https://slack-app-server.vercel.app/', {
       transports: ['websocket']
     });
+    // const socket = io('ws://localhost:3001', {
+    //   transports: ['websocket']
+    // });
 
     setMySocket(socket);
 
@@ -39,7 +39,7 @@ function App() {
         //This line checks if there's already an array of messages for the given roomId. If not (state[roomId] is undefined), it initializes an empty array. This ensures that there's always an array to push new messages into.
         state[data.roomId] = state[data.roomId] || [];
 
-        //This line checks if the message already exists in the state. If it does, it doesn't add it again. This is to prevent duplicate messages from being added to the state. It is called ***DEDUPING*** done at the client side.
+        //This line checks if the message already exists in the state. If it does, it doesn't add it again. This is to prevent duplicate messages from being added to the state. It is called ***DEDUPING*** done at the client side to prevent rerendering of messages due to useEffect.
         if(state[data.roomId].some(obj => obj.messageId === data.messageId)){
             //This message already exists in the state. Don't add it again.
         }
@@ -120,8 +120,8 @@ function App() {
                   className= {"p-2 " + (activeRoomId === i+1? 'bg-black text-white' : 'hover:bg-gray-100 cursor-pointer' )} 
                   key= {i}
                   onClick={() => {
-                  joinRoomExclusively(i+1);
-                }}
+                    joinRoomExclusively(i+1);
+                  }}
                 >
                   Room #{i + 1}
                 </div>
