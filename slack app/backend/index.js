@@ -2,7 +2,9 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('./public'));
+app.use("/", (req, res) => {
+    res.send("Server is up and running");
+});
 
 app.listen(3000, () => {
     console.log("HTTP Server listening on port 3000");
