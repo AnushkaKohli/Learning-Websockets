@@ -21,7 +21,7 @@ server.listen(3001, () => {
 const io = new Server(server, {
     transports: ['websocket'],
     cors: {
-        origin: 'https://slack-app-client.vercel.app/',
+        origin: '*',
         methods: ['GET', 'POST']
     }
 });
